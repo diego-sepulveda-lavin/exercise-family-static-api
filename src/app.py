@@ -44,9 +44,18 @@ def add_member():
     data = request.get_json()
     if isinstance(data, dict):
         jackson_family.add_member(data)
-        return 'Member Added', 200
+        return jsonify({"msg":"Member Added"}), 200
     else:
         return jsonify({"msg":"Bad request"}),400
+
+@app.route('/member/<int:member_id>', methods=['PUT'])
+def update_member(member_id=None):
+    data = request.get_json()
+    member = jackson_family.update_member(member_id, data)
+    if member:
+        return jsonify({"msg":"Member Updated"}), 200
+    else:
+        return jsonify({"msg":"ID doesn't exist"}), 400
 
 @app.route('/member/<int:member_id>', methods=['DELETE'])
 def delete_member(member_id=None):

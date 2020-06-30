@@ -57,12 +57,18 @@ class FamilyStructure:
         self._members.append(adding_member)
         # fill this method and update the return
         return None
+    
+    def update_member(self, id, member):
+        ## you have to implement this method
+        ## loop the list and replace the memeber with the given id
+        for position in range(len(self._members)):
+            if self._members[position]["id"] == int(id):
+                self._members[position].update(member)
+                return {"done": True}
 
     def delete_member(self, id):
-        print(self._members)
         # fill this method and update the return
         for position in range(len(self._members)):
-
             if self._members[position]["id"] == int(id):
                 self._members.pop(position)
                 return {"done": True}
